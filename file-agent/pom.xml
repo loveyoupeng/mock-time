@@ -8,6 +8,16 @@
       <groupId>junit</groupId>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <artifactId>byte-buddy</artifactId>
+      <groupId>net.bytebuddy</groupId>
+    </dependency>
+
+    <dependency>
+      <artifactId>byte-buddy-agent</artifactId>
+      <groupId>net.bytebuddy</groupId>
+    </dependency>
   </dependencies>
 
   <modelVersion>4.0.0</modelVersion>
@@ -20,4 +30,32 @@
     <groupId>org.loveyoupeng.mock</groupId>
     <version>1.0-SNAPSHOT</version>
   </parent>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Premain-Class>org.loveyoupeng.mock.SystemTimeFileAgent</Premain-Class>
+              <Agent-Class>org.loveyoupeng.mock.SystemTimeFileAgent</Agent-Class>
+              <Can-Redefine-Classes>true</Can-Redefine-Classes>
+              <Can-Retransform-Classes>true</Can-Retransform-Classes>
+              <Can-Set-Native-Method-Prefix>true</Can-Set-Native-Method-Prefix>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <argLine>-javaagent:target/file-agent-1.0-SNAPSHOT.jar</argLine>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>

@@ -20,7 +20,7 @@
     </dependency>
   </dependencies>
   <modelVersion>4.0.0</modelVersion>
-  <name>agent</name>
+  <name>property-agent</name>
 
 
   <packaging>jar</packaging>

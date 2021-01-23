@@ -16,7 +16,7 @@ import net.bytebuddy.asm.Advice;
 import net.bytebuddy.implementation.SuperMethodCall;
 import net.bytebuddy.matcher.ElementMatchers;
 
-public class SystemTimeAgent {
+public class SystemTimeFileAgent {
 
   public static void premain(final String args, final Instrumentation instrumentation) {
     new AgentBuilder.Default().ignore(none())
@@ -32,7 +32,7 @@ public class SystemTimeAgent {
                 .and(returns(long.class))
                 .and(takesNoArguments())
                 .and(named("currentTimeMillis")))
-                .intercept(Advice.to(SystemTimeDelegate.class)
+                .intercept(Advice.to(SystemTimeFileDelegate.class)
                     .wrap(SuperMethodCall.INSTANCE))
         ).installOn(instrumentation);
   }

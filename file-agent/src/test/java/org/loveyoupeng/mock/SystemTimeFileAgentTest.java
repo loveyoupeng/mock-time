@@ -2,15 +2,22 @@ package org.loveyoupeng.mock;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.loveyoupeng.mock.SystemTimeUtils.setStep;
-import static org.loveyoupeng.mock.SystemTimeUtils.setTime;
-import static org.loveyoupeng.mock.SystemTimeUtils.useRealTime;
+import static org.loveyoupeng.mock.SystemTimeFileUtils.debug;
+import static org.loveyoupeng.mock.SystemTimeFileUtils.setStep;
+import static org.loveyoupeng.mock.SystemTimeFileUtils.setTime;
+import static org.loveyoupeng.mock.SystemTimeFileUtils.useRealTime;
 
-import java.lang.reflect.Method;
+import java.io.File;
 import java.util.Date;
+import org.junit.AfterClass;
 import org.junit.Test;
 
-public class SystemTimeAgentTest {
+public class SystemTimeFileAgentTest {
+
+  @AfterClass
+  public static void afterClass() {
+    new File(System.getProperty("java.io.tmpdir") + File.separator + "mockTime.dat").delete();
+  }
 
   @Test
   public void test() {
@@ -18,7 +25,7 @@ public class SystemTimeAgentTest {
     assertTrue(date.getTime() <= System.currentTimeMillis());
     System.out.println(System.currentTimeMillis());
     final long realStart = System.currentTimeMillis();
-
+    debug();
     setTime(1000);
     assertEquals(1000L, System.currentTimeMillis());
     assertEquals(1010L, System.currentTimeMillis());
@@ -34,10 +41,5 @@ public class SystemTimeAgentTest {
 
     useRealTime();
     assertTrue(realStart <= System.currentTimeMillis());
-
-    final Method[] methods = System.class.getDeclaredMethods();
-    for(final Method method : methods) {
-      System.out.println(method.getName());
-    }
   }
 }
