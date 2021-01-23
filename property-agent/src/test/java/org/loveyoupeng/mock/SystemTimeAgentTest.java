@@ -6,7 +6,6 @@ import static org.loveyoupeng.mock.SystemTimeUtils.setStep;
 import static org.loveyoupeng.mock.SystemTimeUtils.setTime;
 import static org.loveyoupeng.mock.SystemTimeUtils.useRealTime;
 
-import java.util.Calendar;
 import java.util.Date;
 import org.junit.Test;
 
