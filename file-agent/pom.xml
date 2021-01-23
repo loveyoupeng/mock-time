@@ -1,0 +1,23 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>file-agent</artifactId>
+  <dependencies>
+    <dependency>
+      <artifactId>junit</artifactId>
+      <groupId>junit</groupId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <modelVersion>4.0.0</modelVersion>
+  <name>file-agent</name>
+  <packaging>jar</packaging>
+
+
+  <parent>
+    <artifactId>mock-time</artifactId>
+    <groupId>org.loveyoupeng.mock</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+</project>

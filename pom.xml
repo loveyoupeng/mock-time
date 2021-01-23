@@ -1,0 +1,73 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>mock-time</artifactId>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <groupId>org.apache.maven.plugins</groupId>
+          <version>3.2.0</version>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <groupId>org.apache.maven.plugins</groupId>
+          <version>3.8.1</version>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <groupId>org.apache.maven.plugins</groupId>
+          <version>2.22.2</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <artifactId>byte-buddy</artifactId>
+        <groupId>net.bytebuddy</groupId>
+        <version>${bytebuddy.version}</version>
+      </dependency>
+
+      <dependency>
+        <artifactId>byte-buddy-agent</artifactId>
+        <groupId>net.bytebuddy</groupId>
+        <version>${bytebuddy.version}</version>
+      </dependency>
+
+      <dependency>
+        <artifactId>junit</artifactId>
+        <groupId>junit</groupId>
+        <scope>test</scope>
+        <version>${junit.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  <groupId>org.loveyoupeng.mock</groupId>
+  <modelVersion>4.0.0</modelVersion>
+
+  <modules>
+    <module>file-agent</module>
+    <module>property-agent</module>
+    <module>sample</module>
+  </modules>
+
+  <name>mock-time</name>
+  <packaging>pom</packaging>
+
+  <properties>
+    <bytebuddy.version>1.10.19</bytebuddy.version>
+    <junit.version>4.13.1</junit.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <url>http://maven.apache.org</url>
+  <version>1.0-SNAPSHOT</version>
+</project>

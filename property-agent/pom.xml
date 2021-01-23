@@ -1,0 +1,62 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>property-agent</artifactId>
+  <dependencies>
+    <dependency>
+      <artifactId>junit</artifactId>
+      <groupId>junit</groupId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <artifactId>byte-buddy</artifactId>
+      <groupId>net.bytebuddy</groupId>
+    </dependency>
+
+    <dependency>
+      <artifactId>byte-buddy-agent</artifactId>
+      <groupId>net.bytebuddy</groupId>
+    </dependency>
+  </dependencies>
+  <modelVersion>4.0.0</modelVersion>
+  <name>agent</name>
+
+
+  <packaging>jar</packaging>
+
+
+  <parent>
+    <artifactId>mock-time</artifactId>
+    <groupId>org.loveyoupeng.mock</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-jar-plugin</artifactId>
+      <configuration>
+        <archive>
+          <manifestEntries>
+            <Premain-Class>org.loveyoupeng.mock.SystemTimeAgent</Premain-Class>
+            <Agent-Class>org.loveyoupeng.mock.SystemTimeAgent</Agent-Class>
+            <Can-Redefine-Classes>true</Can-Redefine-Classes>
+            <Can-Retransform-Classes>true</Can-Retransform-Classes>
+            <Can-Set-Native-Method-Prefix>true</Can-Set-Native-Method-Prefix>
+          </manifestEntries>
+        </archive>
+      </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <argLine>-javaagent:target/property-agent-1.0-SNAPSHOT.jar</argLine>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
